@@ -1,0 +1,61 @@
+<p-card header="Consultar Dias">
+    <form [formGroup]="form"
+        class="form-group">
+        <div class="formgrid grid">
+            <div class="field col-6">
+                <span class="md-inputfield">
+                    <label>Nome do Dia</label>
+                    <input class="p-inputtext"
+                        pInputText
+                        placeholder="Nome do Dia"
+                        [style]="{'width':'100%'}"
+                        formControlName="nome">
+                </span>
+            </div>
+            <div class="field col-6">
+                <span class="md-inputfield">
+                    <label>Sigla do Dia</label>
+                    <input class="p-inputtext"
+                        pInputText
+                        placeholder="Sigla do Dia"
+                        [style]="{'width':'100%'}"
+                        formControlName="sigla">
+                </span>
+            </div>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="formgrid grid">
+            <div class="field col-4">
+                <p-button label="Novo"
+                    icon="pi pi-save"
+                    [style]="{'width':'100%'}"
+                    (click)="''"
+                    styleClass="p-button-success">
+                </p-button>
+            </div>
+            <div class="field col-4">
+                <p-button label="Pesquisar"
+                    icon="pi pi-search"
+                    [style]="{'width':'100%'}"
+                    (click)="pesquisar()"
+                    styleClass="p-button-secondary">
+                </p-button>
+            </div>
+            <div class="field col-4">
+                <p-button label="Limpar"
+                    icon="pi pi-times"
+                    [style]="{'width':'100%'}"
+                    (click)="''"
+                    styleClass="p-button-secondary">
+                </p-button>
+            </div>
+        </div>
+    </form>
+</p-card>
+<div class="col"></div>
+<p-card>
+    <app-tabela [titulo]="'Consultar Dias'"
+        [dataSource]="dataSource"
+        [columns]="columns"></app-tabela>
+</p-card>

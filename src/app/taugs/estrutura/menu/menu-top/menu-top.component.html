@@ -1,0 +1,14 @@
+<p-menubar [model]="itensMenu">
+    <ng-template pTemplate="start">
+        <h3 class="mr-8" style="color: gray;">Calendar</h3>
+    </ng-template>
+    <ng-template *ngIf="user != null" pTemplate="end">
+        <p-menubar [style]="{'border':'none' }" [model]="itensUser">
+            <ng-template pTemplate="start">
+                <i class="pi pi-fw pi-user p-disabled"></i>
+            </ng-template>
+        </p-menubar>
+    </ng-template>
+</p-menubar>
+
+<taugs-breadcrumb [caminho]="caminho" [pagina]="pagina" [url]="url"></taugs-breadcrumb>
