@@ -1,1 +1,82 @@
-<p>mes works!</p>
+<p-toast></p-toast>
+<div class="grid mt-3 flex justify-content-center">
+    <div class="col-11">
+        <p-card header="Consultar Meses">
+            <form [formGroup]="form"
+                class="form-group">
+                <p-card>
+                    <div class="formgrid grid mt-3">
+                        <div class="field col-6">
+                            <span class="md-inputfield p-float-label">
+                                <input class="p-inputtext"
+                                    pInputText
+                                    [style]="{'width':'100%'}"
+                                    formControlName="nome">
+                                <label>Nome do Mes</label>
+                            </span>
+                        </div>
+                        <div class="field col-6">
+                            <span class="md-inputfield p-float-label">
+                                <input class="p-inputtext"
+                                    pInputText
+                                    [style]="{'width':'100%'}"
+                                    formControlName="sigla">
+                                <label>Sigla do Mes</label>
+                            </span>
+                        </div>
+                    </div>
+                </p-card>
+                <div class="formgrid grid mt-5">
+                    <div class="field col-4">
+                        <p-button label="Novo"
+                            icon="pi pi-save"
+                            [style]="{'width':'100%'}"
+                            (click)="displaySalvar = true"
+                            styleClass="p-button-success">
+                        </p-button>
+                    </div>
+                    <div class="field col-4">
+                        <p-button label="Pesquisar"
+                            icon="pi pi-search"
+                            [style]="{'width':'100%'}"
+                            (click)="pesquisar()"
+                            styleClass="p-button-secondary">
+                        </p-button>
+                    </div>
+                    <div class="field col-4">
+                        <p-button label="Limpar"
+                            icon="pi pi-times"
+                            [style]="{'width':'100%'}"
+                            (click)="limpar()"
+                            styleClass="p-button-secondary">
+                        </p-button>
+                    </div>
+                </div>
+            </form>
+        </p-card>
+        <div class="col"></div>
+        <p-card>
+            <app-tabela [titulo]="'Consultar Meses'"
+                [dataSource]="dataSource"
+                [columns]="columns"
+                [tooltip]="'sigla'"
+                (visualizar)="objVisualizar = ($event); displayVisualizar = true"
+                (editar)="objSalvar = ($event); displaySalvar = true"
+                (deletar)="objDeletar = ($event); displayDeletar = true"></app-tabela>
+        </p-card>
+    </div>
+</div>
+
+<modal-visualizar-mes [display]="displayVisualizar"
+    [mes]="objVisualizar"
+    (desativar)="displayVisualizar = false">
+</modal-visualizar-mes>
+<modal-salvar-mes [display]="displaySalvar"
+    [mes]="objSalvar"
+    (desativar)="resetarSalvar()">
+</modal-salvar-mes>
+<modal-deletar-mes [display]="displayDeletar"
+    [mes]="objDeletar"
+    (sair)="displayDeletar = false"
+    (delete)="excluir()">
+</modal-deletar-mes>

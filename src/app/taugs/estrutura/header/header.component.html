@@ -1,3 +1,28 @@
 <div class="p-2 bg-primary text-white rounded">
     <h2>Taugs Calendar Generation</h2>
 </div>
+<div class="grid flex align-items-center bg-gray-200">
+    <div class="col-6 mb-0 pb-0 flex justify-content-start">
+        <i class="pi pi pi-bars ml-5"
+            (click)="teste()"></i>
+    </div>
+    <div class="col-6 mb-0 pb-0 flex justify-content-end">
+        <div class="shadow-4 flex align-items-center justify-content-center 
+    border-1 mt-1 mr-5 mb-1 text-right border-circle w-3rem h-3rem border-200 surface-200">
+            <p-tieredMenu #menu
+                [model]="items"
+                [popup]="true">
+            </p-tieredMenu>
+            <a>
+                <i class="pi pi-user text-900 text-2xl p-0 hover:shadow-8"
+                    (click)="menu.toggle($event)">
+                </i>
+            </a>
+        </div>
+    </div>
+    <!-- <div class="col-12 mt-0 pt-0 flex justify-content-end">
+        <label class="mr-5 text-blue-700">{{user.userName}}</label>
+    </div> -->
+</div>
+<menu-lateral [display]="display"
+    (fechar)="display = false"></menu-lateral>

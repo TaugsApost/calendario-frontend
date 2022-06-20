@@ -1,0 +1,6 @@
+<p-card [styleClass]="ativo?'ativo':'inativo'">
+    <ng-template pTemplate="subtitle">
+        {{data.posicaoAno == 0 ? '': data.posicaoAno}}
+    </ng-template>
+    <label>{{data.posicaoMes == 0 ? '': data.posicaoMes}}</label>
+</p-card>

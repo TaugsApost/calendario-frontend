@@ -1,0 +1,43 @@
+<p-dialog [(visible)]="display"
+    [resizable]="false"
+    [style]="{width: '25vw'}"
+    [draggable]="false"
+    [header]="dia ? dia.sigla : ''"
+    [modal]="true"
+    (onHide)="voltar()">
+    <h1 class="mt-0 pt-0">{{dia ? dia.nome : ''}}</h1>
+    <p-card>
+        <div class="formgrid grid">
+            <div class="field col-6">
+                <span class="md-inputfield">
+                    <label>Nome do Dia</label>
+                    <input class="p-inputtext"
+                        pInputText
+                        [readOnly]="true"
+                        [value]="dia ? dia.nome : ''"
+                        [style]="{'width':'100%','border':'none'}">
+                </span>
+            </div>
+            <div class="field col-6">
+                <span class="md-inputfield">
+                    <label>Sigla do Dia</label>
+                    <input class="p-inputtext"
+                        pInputText
+                        [readOnly]="true"
+                        [value]="dia ? dia.sigla : ''"
+                        [style]="{'width':'100%','border':'none'}">
+                </span>
+            </div>
+        </div>
+    </p-card>
+    <br>
+    <div class="field col-6">
+        <button pButton
+            pRipple
+            type="button"
+            label="Voltar"
+            class="p-button-secondary"
+            [style]="{'width':'100%'}"
+            (click)="voltar()"></button>
+    </div>
+</p-dialog>

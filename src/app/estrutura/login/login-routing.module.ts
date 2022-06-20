@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router"
+import { AuthGuard } from "../auth/auth.guard"
 import { CriarContaComponent } from "./criar-conta/criar-conta.component"
 import { LogarContaComponent } from "./logar-conta/logar-conta.component"
 import { VisualizarContaComponent } from "./visualizar-conta/visualizar-conta.component"
@@ -7,7 +8,8 @@ import { VisualizarContaComponent } from "./visualizar-conta/visualizar-conta.co
 const routes: Routes = [
     {
         path: 'logar',
-        component: LogarContaComponent
+        component: LogarContaComponent,
+        canLoad: [AuthGuard]
     },
     {
         path: 'criarConta',
@@ -20,7 +22,8 @@ const routes: Routes = [
     {
         path: '',
         redirectTo: 'logar',
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canLoad: [AuthGuard]
     }
 
 ]

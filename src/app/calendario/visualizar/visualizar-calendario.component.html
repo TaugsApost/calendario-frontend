@@ -1,0 +1,71 @@
+<div class="grid mt-3 flex justify-content-center">
+    <div class="col-11">
+        <p-card header="Calendario">
+            <div class="col-12">
+                <p-card>
+                    <div class="text-center formgrid grid flex justify-content-center align-items-center">
+                        <div class="col-1">
+                            <button pButton
+                                type="button"
+                                [style]="{'width':'50%','height':'20%'}"
+                                class="p-button-primary"
+                                (click)="voltarAno()"
+                                icon="pi pi-angle-double-left">
+                            </button>
+                        </div>
+                        <div class="field col-5 m-0 p-0">
+                            <h4>{{ano.nome}}</h4>
+                        </div>
+                        <div class="col-1">
+                            <button pButton
+                                type="button"
+                                [style]="{'width':'50%','height':'50%'}"
+                                class="p-button-primary"
+                                (click)="avancarAno()"
+                                icon="pi pi-angle-double-right">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-center formgrid grid flex justify-content-center align-items-center">
+                        <div class="col-1">
+                            <button pButton
+                                type="button"
+                                [style]="{'width':'50%','height':'20%'}"
+                                class="p-button-primary"
+                                (click)="voltarMes()"
+                                icon="pi pi-angle-double-left">
+                            </button>
+                        </div>
+                        <div class="field col-5 m-0 p-0">
+                            <h3 class="">{{mes.mes.nome}}</h3>
+                        </div>
+                        <div class="col-1">
+                            <button pButton
+                                type="button"
+                                [style]="{'width':'50%','height':'50%'}"
+                                class="p-button-primary"
+                                (click)="avancarMes()"
+                                icon="pi pi-angle-double-right">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-center formgrid grid flex justify-content-center">
+                        <div *ngFor="let dia of dias"
+                            class="field col-1 m-0 p-0">
+                            <label>{{dia.dia.sigla}}</label>
+                        </div>
+                    </div>
+
+                    <div *ngFor="let array of arrayDatas"
+                        class="formgrid grid flex justify-content-center">
+                        <div *ngFor="let data of array"
+                            class="field col-1 m-0 p-0">
+                            <view-data [ativo]="data.posicaoMes == 0? false:true"
+                                [data]="data"></view-data>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        </p-card>
+    </div>
+</div>

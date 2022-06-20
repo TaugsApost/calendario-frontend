@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsuarioFilter } from 'src/app/usuario/shared/usuario.model';
 import { LoginService } from '../login.service';
 
 @Component({
@@ -9,27 +11,30 @@ import { LoginService } from '../login.service';
 })
 export class LogarContaComponent implements OnInit {
 
-  login = {
-    email: '',
-    password: ''
-  };
+  invalidLogin = false;
+  formLogin: FormGroup;
 
-  constructor(
-    private service: LoginService,
-    private router: Router
-  ) { }
+  constructor(private service: LoginService, private router: Router) {
+    this.formLogin = new FormGroup({
+      userName: new FormControl('', Validators.required),
+      senha: new FormControl('', Validators.required)
+    });
+  }
 
   ngOnInit() {
   }
 
-  async onSubmit() {
-    try {
-      const result = await this.service.login(this.login);
-      console.log(`Login efetuado: ${result}`);
-      // navego para a rota vazia novamente
-      this.router.navigate(['']);
-    } catch (error) {
-      console.error(error);
-    }
+  logar() {
+    this.service.consultarPorUserName(this.formLogin.getRawValue()).subscribe(
+      response => {
+        let verificar: boolean = this.service.logar(response, this.formLogin.controls['senha'].value);
+        if (verificar) {
+          this.router.navigate(['']);
+        } else {
+          this.invalidLogin = true;
+        }
+      }
+    );
+    //this.router.navigate(['']);
   }
 }

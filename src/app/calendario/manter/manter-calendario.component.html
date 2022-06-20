@@ -1,0 +1,290 @@
+<p-card header="Novo Calendario">
+    <form [formGroup]="formSalvar"
+        class="form-group">
+        <p-tabView [(activeIndex)]="indexTab"
+            (onChange)="mudouDeAba($event)">
+            <p-tabPanel header="Step 1">
+                <p-fieldset [toggleable]="true"
+                    [legend]="'Dias'">
+                    <div class="formgrid grid mt-3">
+                        <div class="field col-11">
+                            <span class="p-float-label">
+                                <p-dropdown formControlName="dia"
+                                    [options]="listaDias"
+                                    [filter]="true"
+                                    [style]="{'width':'100%'}">
+                                </p-dropdown>
+                                <label>Dia</label>
+                            </span>
+                        </div>
+                        <div class="field col-1">
+                            <button pButton
+                                type="button"
+                                icon="pi pi-plus"
+                                [style]="{'width':'100%'}"
+                                class="p-button-success"
+                                (click)="adicionarDiaTabela()">
+                            </button>
+                        </div>
+                        <div class="field col-12">
+                            <app-tabela [columns]="colDias"
+                                [dataSource]="listaDiasTabela"
+                                [habEditar]="false"
+                                [habVisualizar]="false">
+
+                            </app-tabela>
+                        </div>
+                    </div>
+                </p-fieldset>
+                <br>
+                <p-fieldset [toggleable]="true"
+                    [legend]="'Meses'">
+                    <div class="formgrid grid mt-3">
+                        <div class="field col-11">
+                            <span class="p-float-label">
+                                <p-dropdown formControlName="mes"
+                                    [options]="listaMeses"
+                                    [filter]="true"
+                                    [style]="{'width':'100%'}">
+                                </p-dropdown>
+                                <label>Mes</label>
+                            </span>
+                        </div>
+                        <div class="field col-1">
+                            <button pButton
+                                type="button"
+                                icon="pi pi-plus"
+                                [style]="{'width':'100%'}"
+                                class="p-button-success"
+                                (click)="adicionarMesTabela()">
+                            </button>
+                        </div>
+                        <div class="field col-12">
+                            <app-tabela [columns]="colMeses"
+                                [dataSource]="listaMesesTabela"
+                                [habEditar]="false"
+                                [habVisualizar]="false">
+
+                            </app-tabela>
+                        </div>
+                    </div>
+                </p-fieldset>
+                <br>
+
+                <div class="formgrid grid mt-3 mr-0 flex justify-content-center">
+                    <div class="field col-1">
+                        <button pButton
+                            type="button"
+                            label="Confirmar"
+                            [style]="{'width':'100%'}"
+                            class="p-button-success"
+                            (click)="proximoPasso()">
+                        </button>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Step 2"
+                [disabled]="step2">
+                <p-fieldset legend="Ano"
+                    [toggleable]="true">
+                    <div class="formgrid grid mt-3 flex justify-content-center align-items-center">
+                        <div class="field col-5">
+                            <span class="p-float-label">
+                                <p-dropdown [filter]="true"
+                                    [options]="listaAnos"
+                                    [style]="{'width':'100%'}"
+                                    formControlName="anoInicial"></p-dropdown>
+                                <label>Ano Inicial</label>
+                            </span>
+                        </div>
+                        <div class="field col-5">
+                            <span class="p-float-label">
+                                <p-dropdown [filter]="true"
+                                    [options]="listaAnos"
+                                    [style]="{'width':'100%'}"
+                                    formControlName="anoFinal"></p-dropdown>
+                                <label>Ano Final</label>
+                            </span>
+                        </div>
+                        <div class="field col-2 field-checkbox">
+                            <p-fieldset legend="Ano Bissexto?">
+                                <div class="field-checkbox">
+                                    <p-checkbox formControlName="bissexto"
+                                        name="bissexto"
+                                        [binary]="true">
+                                    </p-checkbox>
+                                    <label for="bissexto">Sim</label>
+                                </div>
+                            </p-fieldset>
+                        </div>
+                    </div>
+                </p-fieldset>
+                <div class="formgrid grid mt-3">
+                    <div class="field col-6">
+                        <p-fieldset legend="Dias">
+                            <div class="formgrid grid mt-3 col-12 flex align-items-center">
+                                <div class="field col-5">
+                                    <p-tree [style]="{'width':'100%'}"
+                                        [value]="$any(listaDiasTabela)"
+                                        selectionMode="single"
+                                        [(selection)]="diaSelecionado">
+                                        <ng-template pTemplate="header">
+                                            Dias Disponíveis
+                                        </ng-template>
+                                        <ng-template let-node
+                                            pTemplate="default">
+                                            {{node.nome}}
+                                        </ng-template>
+                                    </p-tree>
+                                </div>
+                                <div class="formgrid grid col-2">
+                                    <div class="field col-12">
+                                        <button pButton
+                                            type="button"
+                                            [style]="{'width':'100%'}"
+                                            class="p-button-success"
+                                            (click)="adicionarDiaData()"
+                                            icon="pi pi-angle-double-right">
+                                        </button>
+                                    </div>
+
+                                </div>
+                                <div class="field col-5">
+                                    <p-tree [style]="{'width':'100%'}"
+                                        [value]="$any(listaDiaData)"
+                                        selectionMode="single"
+                                        [(selection)]="diaDataSelecionado">
+                                        <ng-template pTemplate="header">
+                                            Dias Criados
+                                        </ng-template>
+                                        <ng-template pTemplate="empty">
+                                            Lista Vazia
+                                        </ng-template>
+                                        <ng-template let-node
+                                            pTemplate="default">
+                                            {{node.dia.nome}}
+                                        </ng-template>
+                                    </p-tree>
+                                </div>
+                            </div>
+                            <div class="formgrid grid mt-3 col-12 flex align-items-center align-content-center justify-content-between">
+                                <div class="field col-6">
+                                    <span class="p-float-label">
+                                        <p-dropdown class="form-control"
+                                            [style]="{'width':'100%'}"
+                                            formControlName="posicaoDia"
+                                            [options]="listaPosicaoDia">
+                                        </p-dropdown>
+                                        <label>Posicao</label>
+                                    </span>
+                                </div>
+                                <div class="field col-6 flex justify-content-center">
+                                    <div class="field-checkbox">
+                                        <p-checkbox formControlName="diaInicialCalendario"
+                                            name="diaInic"
+                                            [binary]="true">
+                                        </p-checkbox>
+                                        <label for="DiaInic">Dia Inicial</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-fieldset>
+                    </div>
+                    <div class="field col-6">
+                        <p-fieldset legend="Meses">
+                            <div class="formgrid grid mt-3 col-12 flex align-items-center">
+                                <div class="field col-5">
+                                    <p-tree [style]="{'width':'100%'}"
+                                        [value]="$any(listaMesesTabela)"
+                                        selectionMode="single"
+                                        [(selection)]="mesSelecionado">
+                                        <ng-template pTemplate="header">
+                                            Meses Disponíveis
+                                        </ng-template>
+                                        <ng-template let-node
+                                            pTemplate="default">
+                                            {{node.nome}}
+                                        </ng-template>
+                                    </p-tree>
+                                </div>
+                                <div class="formgrid grid col-2">
+                                    <div class="field col-12">
+                                        <button pButton
+                                            type="button"
+                                            [style]="{'width':'100%'}"
+                                            class="p-button-success"
+                                            (click)="adicionarMesData()"
+                                            icon="pi pi-angle-double-right">
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="field col-5">
+                                    <p-tree [style]="{'width':'100%'}"
+                                        [value]="$any(listaMesData)"
+                                        selectionMode="single"
+                                        [(selection)]="mesDataSelecionado">
+                                        <ng-template pTemplate="header">
+                                            Meses Criados
+                                        </ng-template>
+                                        <ng-template pTemplate="empty">
+                                            Lista Vazia
+                                        </ng-template>
+                                        <ng-template let-node
+                                            pTemplate="default">
+                                            {{node.mes.nome}}
+                                        </ng-template>
+                                    </p-tree>
+                                </div>
+                            </div>
+                            <div class="formgrid grid mt-3 col-12 flex align-items-center align-content-center justify-content-center">
+                                <div class="field col-4">
+                                    <span class="p-float-label">
+                                        <p-dropdown [options]="listaPosicaoMes"
+                                            class="form-control"
+                                            [style]="{'width':'100%'}"
+                                            formControlName="posicaoMes">
+                                        </p-dropdown>
+                                        <label>Posicao</label>
+                                    </span>
+                                </div>
+                                <div class="field col-4">
+                                    <span class="p-float-label">
+                                        <input pInputText
+                                            class="form-control p-inputtext"
+                                            type="number"
+                                            [style]="{'width':'100%'}"
+                                            formControlName="numDias">
+                                        <label>Numero de Dias</label>
+                                    </span>
+                                </div>
+                                <div class="field col-4 flex justify-content-center">
+                                    <div class="field-checkbox">
+                                        <p-checkbox formControlName="mesBissexto"
+                                            name="mesBissexto"
+                                            [binary]="true">
+                                        </p-checkbox>
+                                        <label for="mesBissexto">Bissexto?</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-fieldset>
+                    </div>
+                </div>
+                <div class="formgrid grid mt-3 mr-0 flex justify-content-center">
+                    <div class="field col-1">
+                        <button pButton
+                            type="button"
+                            label="Criar"
+                            [style]="{'width':'100%'}"
+                            class="p-button-success"
+                            (click)="criarCalendario()">
+                        </button>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </form>
+</p-card>
+<p-toast position="top-center"
+    [preventOpenDuplicates]="true">
+</p-toast>

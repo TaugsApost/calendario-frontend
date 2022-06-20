@@ -1,61 +1,83 @@
-<p-card header="Consultar Dias">
-    <form [formGroup]="form"
-        class="form-group">
-        <div class="formgrid grid">
-            <div class="field col-6">
-                <span class="md-inputfield">
-                    <label>Nome do Dia</label>
-                    <input class="p-inputtext"
-                        pInputText
-                        placeholder="Nome do Dia"
-                        [style]="{'width':'100%'}"
-                        formControlName="nome">
-                </span>
-            </div>
-            <div class="field col-6">
-                <span class="md-inputfield">
-                    <label>Sigla do Dia</label>
-                    <input class="p-inputtext"
-                        pInputText
-                        placeholder="Sigla do Dia"
-                        [style]="{'width':'100%'}"
-                        formControlName="sigla">
-                </span>
-            </div>
-        </div>
+<p-toast></p-toast>
+<div class="grid mt-3 flex justify-content-center">
+    <div class="col-11">
+        <p-card header="Consultar Dias">
+            <form [formGroup]="form"
+                class="form-group">
+                <p-card>
+                    <div class="formgrid grid mt-3">
+                        <div class="field col-6">
+                            <span class="md-inputfield p-float-label">
+                                <input class="p-inputtext"
+                                    pInputText
+                                    [style]="{'width':'100%'}"
+                                    formControlName="nome">
+                                <label>Nome do Dia</label>
+                            </span>
+                        </div>
+                        <div class="field col-6">
+                            <span class="md-inputfield p-float-label">
+                                <input class="p-inputtext"
+                                    pInputText
+                                    [style]="{'width':'100%'}"
+                                    formControlName="sigla">
+                                <label>Sigla do Dia</label>
+                            </span>
+                        </div>
+                    </div>
+                </p-card>
+                <div class="formgrid grid mt-5">
+                    <div class="field col-4">
+                        <p-button label="Novo"
+                            icon="pi pi-save"
+                            [style]="{'width':'100%'}"
+                            (click)="displaySalvar = true"
+                            styleClass="p-button-success">
+                        </p-button>
+                    </div>
+                    <div class="field col-4">
+                        <p-button label="Pesquisar"
+                            icon="pi pi-search"
+                            [style]="{'width':'100%'}"
+                            (click)="pesquisar()"
+                            styleClass="p-button-secondary">
+                        </p-button>
+                    </div>
+                    <div class="field col-4">
+                        <p-button label="Limpar"
+                            icon="pi pi-times"
+                            [style]="{'width':'100%'}"
+                            (click)="limpar()"
+                            styleClass="p-button-secondary">
+                        </p-button>
+                    </div>
+                </div>
+            </form>
+        </p-card>
         <div class="col"></div>
-        <div class="col"></div>
-        <div class="formgrid grid">
-            <div class="field col-4">
-                <p-button label="Novo"
-                    icon="pi pi-save"
-                    [style]="{'width':'100%'}"
-                    (click)="''"
-                    styleClass="p-button-success">
-                </p-button>
-            </div>
-            <div class="field col-4">
-                <p-button label="Pesquisar"
-                    icon="pi pi-search"
-                    [style]="{'width':'100%'}"
-                    (click)="pesquisar()"
-                    styleClass="p-button-secondary">
-                </p-button>
-            </div>
-            <div class="field col-4">
-                <p-button label="Limpar"
-                    icon="pi pi-times"
-                    [style]="{'width':'100%'}"
-                    (click)="''"
-                    styleClass="p-button-secondary">
-                </p-button>
-            </div>
-        </div>
-    </form>
-</p-card>
-<div class="col"></div>
-<p-card>
-    <app-tabela [titulo]="'Consultar Dias'"
-        [dataSource]="dataSource"
-        [columns]="columns"></app-tabela>
-</p-card>
+        <p-card>
+            <app-tabela [titulo]="'Consultar Dias'"
+                [dataSource]="dataSource"
+                [columns]="columns"
+                [tooltip]="'sigla'"
+                (visualizar)="objVisualizar = ($event); displayVisualizar = true"
+                (editar)="objSalvar = ($event); displaySalvar = true"
+                (deletar)="objDeletar = ($event); displayDeletar = true">
+            </app-tabela>
+        </p-card>
+    </div>
+</div>
+
+<modal-visualizar [display]="displayVisualizar"
+    [dia]="objVisualizar"
+    (desativar)="displayVisualizar = false">
+</modal-visualizar>
+<modal-salvar [display]="displaySalvar"
+    [dia]="objSalvar"
+    (desativar)="resetarSalvar()">
+</modal-salvar>
+<modal-deletar [display]="displayDeletar"
+    [dia]="objDeletar"
+    (sair)="displayDeletar = false"
+    (delete)="excluir()">
+</modal-deletar>

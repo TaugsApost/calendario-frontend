@@ -1,0 +1,40 @@
+<p-accordion styleClass="teste">
+    <p-accordionTab>
+        <ng-template pTemplate="header">
+            <label>
+                <i class="pi pi-calendar"></i> Calendário {{calendario.id}}
+            </label>
+        </ng-template>
+        <a [routerLink]="'../visualizar/'+calendario.id">
+            <div class="formgrid grid mt-3">
+                <div class="field col-4">
+                    <span class="p-float-label">
+                        <label>{{calendario.configuracao.anoInicial + ' - '+ calendario.configuracao.anoFinal}}</label>
+                    </span>
+                </div>
+                <div class="field col-4">
+                    <span class="p-float-label">
+                        <label>{{calendario.datas.length}} datas</label>
+                    </span>
+                </div>
+                <div class="field col-4">
+                    <span class="p-float-label">
+                        <label>{{calendario.configuracao.meses.length}} meses</label>
+                    </span>
+                </div>
+            </div>
+            <div class="formgrid grid mt-3">
+                <div class="field col-4">
+                    <span class="p-float-label">
+                        <label for="bissexto">Bissexto?: {{calendario.configuracao.bissexto == true? 'Sim':'Não'}}</label>
+                    </span>
+                </div>
+                <div class="field col-4">
+                    <span class="p-float-label">
+                        <label for="bissexto">Dia inicial: {{diaInicial.sigla}}</label>
+                    </span>
+                </div>
+            </div>
+        </a>
+    </p-accordionTab>
+</p-accordion>

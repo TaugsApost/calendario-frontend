@@ -1,17 +1,19 @@
 import { NgModule } from "@angular/core";
 import { PrimengModule } from "src/app/shared/primeng.module";
+import { MenuLateralModule } from "../menu/menu-lateral/menu-lateral.module";
 import { HeaderComponent } from "./header.component";
 
 
 @NgModule({
-    declarations:[
+    declarations: [
         HeaderComponent
     ],
-    imports:[
-        PrimengModule
+    imports: [
+        PrimengModule,
+        MenuLateralModule
     ],
-    exports:[
+    exports: [
         HeaderComponent
     ]
 })
-export class HeaderModule{}
+export class HeaderModule { }

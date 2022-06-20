@@ -29,10 +29,18 @@ export class MenuTopComponent implements OnInit {
         icon: 'pi pi-calendar',
         items: [
           {
-            label: 'Meus Calendários'
+            label: 'Meus Calendários',
+            routerLink: '/calendario',
+            command: (event) => {
+              this.mudarBreadCrumb(' /Home', '/Calendario', '/calendario');
+            }
           },
           {
-            label: 'Novo Calendário'
+            label: 'Novo Calendário',
+            routerLink: '/calendario/novo',
+            command: (event) => {
+              this.mudarBreadCrumb(' /Home/Calendario', '/Novo', '/calendario/novo');
+            }
           }
         ]
       },
@@ -58,6 +66,10 @@ export class MenuTopComponent implements OnInit {
           },
           {
             label: 'Meus Meses',
+            routerLink: '/cadastro/mes',
+            command: (event) => {
+              this.mudarBreadCrumb(' /Home/Cadastro', '/Mes', '/cadastro/mes');
+            }
           }
         ]
       }

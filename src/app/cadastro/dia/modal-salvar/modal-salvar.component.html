@@ -1,0 +1,64 @@
+<p-toast></p-toast>
+<p-dialog [(visible)]="display"
+    [resizable]="true"
+    [style]="{width: '25vw'}"
+    [draggable]="false"
+    [header]=" dia.id != 0 ? dia.sigla:'Novo Dia'"
+    [modal]="true"
+    (onHide)="voltar()"
+    (onShow)="carregarDia()">
+    <h1 class="mt-0 pt-0">{{dia.id != 0 ? 'Editar '+dia.nome: 'Cadastrar Dia'}}</h1>
+    <p-card>
+        <form class="form-group"
+            optionValue="value"
+            [formGroup]="formSalvar">
+            <div class="formgrid grid">
+                <div class="field col-6">
+                    <span class="md-inputfield p-float-label">
+                        <input class="form-control p-inputtext"
+                            type="text"
+                            pInputText
+                            [style]="{'width':'100%'}"
+                            formControlName="nome">
+                        <label>Nome do dia</label>
+                    </span>
+                </div>
+                <div class="field col-6">
+                    <span class="md-inputfield p-float-label">
+                        <input class="form-control p-inputtext"
+                            type="text"
+                            pInputText
+                            [style]="{'width':'100%'}"
+                            formControlName="sigla">
+                        <label>Sigla do dia</label>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </p-card>
+    <br>
+    <form class="form-group">
+        <div class="formgrid grid">
+            <div class="field col-6">
+                <button pButton
+                    pRipple
+                    type="button"
+                    label="Salvar"
+                    class="p-button-success"
+                    [style]="{'width':'100%'}"
+                    (click)="salvar()">
+                </button>
+            </div>
+            <div class="field col-6">
+                <button pButton
+                    pRipple
+                    type="button"
+                    label="Voltar"
+                    class="p-button-secondary"
+                    [style]="{'width':'100%'}"
+                    (click)="voltar()">
+                </button>
+            </div>
+        </div>
+    </form>
+</p-dialog>

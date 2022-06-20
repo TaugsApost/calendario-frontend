@@ -4,6 +4,7 @@ import { AuthGuard } from './estrutura/auth/auth.guard';
 import { HomeModule } from './taugs/estrutura/home/home.module';
 import { LoginModule } from './estrutura/login/login.module';
 import { CadastroModule } from './cadastro/cadastro.module';
+import { CalendarioModule } from './calendario/calendario.module';
 
 const routes: Routes = [
   {
@@ -14,11 +15,17 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./estrutura/login/login.module').then(x => LoginModule),
-    //canActivate: [AuthGuard]
+    canLoad: [AuthGuard]
   },
   {
     path: 'cadastro',
     loadChildren: () => import('./cadastro/cadastro.module').then(x => CadastroModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'calendario',
+    loadChildren: () => import('./calendario/calendario.module').then(x => CalendarioModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '',

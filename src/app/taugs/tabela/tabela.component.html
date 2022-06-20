@@ -12,7 +12,7 @@
         <tr>
             <th *ngFor="let col of columns"
                 pSortableColumn="{{col.value}}"
-                [style]="{'width': '45%','text-align':col.align}">{{col.nome}}</th>
+                [style]="{'width': (col.size == null?'43%':col.size),'text-align':col.align}">{{col.nome}}</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body"
@@ -23,18 +23,29 @@
                 <label>
                     {{dataSource[col.value]}}
                     <label *ngIf="col.value == 'actions'">
-                        <button pTooltip="Editar"
+                        <button *ngIf="habVisualizar"
+                            pTooltip="Visualizar {{dataSource[tooltip]}}"
+                            pButton
+                            pRipple
+                            icon="pi pi-eye"
+                            class="p-button-rounded p-button-success"
+                            (click)="botaoVisualizar(dataSource)"></button>
+                        <label *ngIf="habVisualizar">&nbsp;</label>
+                        <button *ngIf="habEditar"
+                            pTooltip="Editar {{dataSource[tooltip]}}"
                             pButton
                             pRipple
                             icon="pi pi-pencil"
-                            class="p-button-rounded p-button-success mr-2"
-                            (click)="''"></button>
-                        <button pTooltip="Exlcuir"
+                            class="p-button-rounded p-button-warning"
+                            (click)="botaoEditar(dataSource)"></button>
+                        <label *ngIf="habEditar">&nbsp;</label>
+                        <button *ngIf="habDeletar"
+                            pTooltip="Exlcuir {{dataSource[tooltip]}}"
                             pButton
                             pRipple
                             icon="pi pi-trash"
                             class="p-button-rounded p-button-danger"
-                            (click)="''">
+                            (click)="botaoDeletar(dataSource)">
                         </button>
                     </label>
                 </label>

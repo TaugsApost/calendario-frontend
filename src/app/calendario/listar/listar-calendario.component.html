@@ -1,0 +1,15 @@
+<div class="grid mt-3 flex justify-content-center">
+    <div class="col-11">
+        <p-card header="Calendarios">
+            <form [formGroup]="form"
+                class="form-group">
+                <div class="formgrid grid px-3 mt-3">
+                    <div *ngFor="let calendario of listaCalendario"
+                        class="field col-6">
+                        <detalhe-calendario [calendario]="calendario"></detalhe-calendario>
+                    </div>
+                </div>
+            </form>
+        </p-card>
+    </div>
+</div>

@@ -1,3 +1,5 @@
-<taugs-header></taugs-header>
-<taugs-menu-top></taugs-menu-top>
+<taugs-header [user]="user"
+    *ngIf="loginService.logado()"></taugs-header>
+<!-- <taugs-menu-top *ngIf="loginService.logado()"></taugs-menu-top> -->
 <router-outlet></router-outlet>
+<!-- <menu-lateral></menu-lateral> -->

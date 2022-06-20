@@ -1,0 +1,19 @@
+:host ::ng-deep {
+    .p-card {
+        text-align: right;
+        width: 100%;
+        height: 100%;
+    }
+
+    .inativo.p-card {
+        background-color: var(--surface-300);
+    }
+
+    .p-card-content {
+        text-align: center;
+    }
+
+    .ativo.p-card:hover {
+        background-color: var(--surface-hover);
+    }
+}

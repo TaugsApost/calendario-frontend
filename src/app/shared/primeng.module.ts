@@ -14,10 +14,28 @@ import { FrozenColumn, TableModule } from 'primeng/table';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { DialogModule } from 'primeng/dialog';
 import { TooltipModule } from 'primeng/tooltip';
+import { FieldsetModule } from 'primeng/fieldset';
+import { StepsModule } from 'primeng/steps';
+import { TabViewModule } from 'primeng/tabview';
+import { CheckboxModule } from 'primeng/checkbox';
+import { OrderListModule } from 'primeng/orderlist';
+import { TreeModule } from 'primeng/tree';
+import { AccordionModule } from 'primeng/accordion';
+import { InputTextModule } from 'primeng/inputtext';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { SidebarModule } from 'primeng/sidebar';
 
 
 @NgModule({
   exports: [
+    TieredMenuModule,
+    SidebarModule,
+    InputTextModule,
+    TreeModule,
+    OrderListModule,
+    CheckboxModule,
+    TabViewModule,
+    StepsModule,
     DropdownModule,
     CalendarModule,
     ButtonModule,
@@ -33,6 +51,8 @@ import { TooltipModule } from 'primeng/tooltip';
     SpeedDialModule,
     DialogModule,
     TooltipModule,
+    FieldsetModule,
+    AccordionModule
   ],
 
 })

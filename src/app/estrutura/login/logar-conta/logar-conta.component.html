@@ -1,15 +1,65 @@
-<h2 class="text-center">Entrar</h2>
-
-<form (ngSubmit)="onSubmit()" #form="ngForm">
-  <div class="form-group">
-    <label>E-mail</label>
-    <input class="form-control" type="email" name="email" id="email" [(ngModel)]="login.email" required />
+<div class="formgrid mt-8 flex justify-content-center">
+  <div class="field mt-8 col-4">
+    <p-card>
+      <ng-template pTemplate="header">
+        Login
+      </ng-template>
+      <form class="form-group"
+        [formGroup]="formLogin">
+        <div class="formgrid grid mt-3">
+          <div class="field col-12">
+            <span class="p-float-label">
+              <input class="p-inputtext"
+                pInputText
+                type="text"
+                formControlName="userName">
+              <label>Nome de Usuário</label>
+            </span>
+          </div>
+          <div class="field col-12 mt-4">
+            <span class="p-float-label">
+              <input class="p-inputtext"
+                pInputText
+                type="password"
+                formControlName="senha">
+              <label>Senha</label>
+            </span>
+          </div>
+        </div>
+        <div class="formgrid grid mt-5 flex justify-content-between">
+          <div class="field col-6">
+            <button pButton
+              pRipple
+              type="button"
+              label="Logar"
+              class="p-button-raised p-button-success"
+              (click)="logar()"></button>
+          </div>
+          <div class="field col-6">
+            <button pButton
+              pRipple
+              type="button"
+              label="Criar Conta"
+              class="p-button-raised p-button-secondary"></button>
+          </div>
+        </div>
+      </form>
+    </p-card>
   </div>
-  <div class="form-group">
-    <label>Senha</label>
-    <input class="form-control" type="password" name="password" id="password" [(ngModel)]="login.password" required />
-  </div>
-  <button type="submit" class="btn btn-primary btn-block" [disabled]="form.form.invalid">Entrar</button>
-  <button type="button" class="btn btn-link btn-block" [routerLink]="['/login/criarConta']">Criar conta</button>
-</form>
-
+</div>
+<p-dialog [(visible)]="invalidLogin"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{width: '30vw'}">
+  <ng-template pTemplate="header">
+    Erro!
+  </ng-template>
+  <p class="m-0">Usuario ou senha incorreto!</p>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check"
+      (click)="invalidLogin=false"
+      label="Ok"
+      styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
