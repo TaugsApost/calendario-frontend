@@ -57,7 +57,7 @@ export class VisualizarCalendarioComponent implements OnInit {
     this.colunas = record.configuracao.dias.length;
     this.numMeses = record.configuracao.meses.length;
     this.numAnos = record.configuracao.anoFinal - record.configuracao.anoInicial + 1;
-    this.dias = record.configuracao.dias;
+    this.dias = record.configuracao.dias.sort((a, b) => (a.posicao < b.posicao) ? -1 : 1);;
     this.criarListaDatas();
   }
 

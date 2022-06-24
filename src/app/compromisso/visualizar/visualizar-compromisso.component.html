@@ -1,0 +1,70 @@
+<div class="grid mt-3 flex justify-content-center">
+    <div class="col-11">
+        <div class="col-12 mt-3">
+            <p-card header="Visualizar compromisso">
+                <form [formGroup]="viewForm">
+                    <p-card>
+                        <div class="formgrid grid mt-3 flex align-items-center">
+                            <div class="field formgrid grid col-6">
+                                <div class="col-12 field">
+                                    <span class="p-float-label">
+                                        <input pInputText
+                                            readonly="true"
+                                            type="text"
+                                            class="p-inputtext"
+                                            formControlName="titulo">
+                                        <label for="">Título</label>
+                                    </span>
+                                </div>
+                                <div class="col-12 field">
+                                    <p-editor [readonly]="true"
+                                        [ngClass]="{'invalid':viewForm.controls['descricao'].invalid}"
+                                        formControlName="descricao"
+                                        [style]="{'height':'150px'}">
+                                        <ng-template pTemplate="header">
+                                            <div>
+                                                <label class="text-center">Descrição</label>
+                                            </div>
+                                        </ng-template>
+                                    </p-editor>
+                                </div>
+                            </div>
+                            <div class="field formgrid grid col-6 flex justify-content-center">
+                                <div class="text-center field col-12">
+                                    <label for="">Horario</label>
+                                </div>
+                                <div class="text-center field col-6">
+                                    <input type="text"
+                                        pInputText
+                                        class="p-inputtext border-none text-center"
+                                        formControlName="txtHorario"
+                                        readonly="true">
+                                </div>
+                                <div class="text-center field col-12 mt-5 ">
+                                    <label for="">Dia</label>
+                                </div>
+                                <div class="text-center field col-6">
+                                    <input type="text"
+                                        pInputText
+                                        class="p-inputtext border-none text-center"
+                                        formControlName="txtData"
+                                        readonly="true">
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-card>
+                    <div class="formgrid grid mt-5">
+                        <div class="field col-6">
+                            <p-button label="Voltar"
+                                [style]="{'width':'100%'}"
+                                styleClass="p-button-secondary"
+                                routerLink="/compromisso">
+                            </p-button>
+                        </div>
+                    </div>
+                </form>
+            </p-card>
+        </div>
+    </div>
+</div>

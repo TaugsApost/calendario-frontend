@@ -1,0 +1,148 @@
+<div class="grid mt-3 flex justify-content-center">
+    <div class="col-11">
+        <div class="col-12 mt-3">
+            <p-card header="Compromissos">
+                <form [formGroup]="formPesquisa">
+                    <p-card>
+                        <div class="formgrid grid mt-3">
+                            <div class="field col-6">
+                                <span class="p-float-label">
+                                    <input pInputText
+                                        type="text"
+                                        class="p-inputtext"
+                                        formControlName="titulo">
+                                    <label for="">Título</label>
+                                </span>
+                            </div>
+                            <div class="field col-6">
+                                <span class="p-float-label">
+                                    <input pInputText
+                                        type="text"
+                                        class="p-inputtext"
+                                        formControlName="descricao">
+                                    <label for="">Descrição</label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="formgrid grid mt-3">
+                            <div class="field col-6">
+                                <span class="p-float-label">
+                                    <input pInputText
+                                        type="number"
+                                        class="p-inputtext"
+                                        formControlName="hora">
+                                    <label for="">Horas</label>
+                                </span>
+                            </div>
+                            <div class="field col-6">
+                                <span class="p-float-label">
+                                    <input pInputText
+                                        type="number"
+                                        class="p-inputtext"
+                                        formControlName="minutos">
+                                    <label for="">Minutos</label>
+                                </span>
+                            </div>
+                        </div>
+                        <p-fieldset legend="Data"
+                            [toggleable]="true">
+                            <div class="formgrid grid mt-3">
+                                <div [formGroup]="$any(formPesquisa.controls['dataFilter'])"
+                                    class="formgrid grid field col-9">
+                                    <div class="field col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown [filter]="true"
+                                                [options]="listaCalendarios"
+                                                [style]="{'width':'100%'}"
+                                                formControlName="calendario"
+                                                (onChange)="gerarListaCaracteristicasData()">
+                                            </p-dropdown>
+                                            <label for="">Calendário</label>
+                                        </span>
+                                    </div>
+                                    <div class="field col-3">
+                                        <span class="p-float-label">
+                                            <p-dropdown [filter]="true"
+                                                [options]="listaAnos"
+                                                [style]="{'width':'100%'}"
+                                                formControlName="nomeAno">
+                                            </p-dropdown>
+                                            <label for="">Ano</label>
+                                        </span>
+                                    </div>
+                                    <div class="field col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown [filter]="true"
+                                                [options]="listaMeses"
+                                                [style]="{'width':'100%'}"
+                                                formControlName="mes">
+                                            </p-dropdown>
+                                            <label for="">Mes</label>
+                                        </span>
+                                    </div>
+                                    <div class="field col-1">
+                                        <button pButton
+                                            type="button"
+                                            class="p-button-success p-button-rounded"
+                                            icon="pi pi-angle-double-right"
+                                            (click)="criarListaDatas()">
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- ///// -->
+                                <div class="field col-3">
+                                    <span class="p-float-label">
+                                        <p-dropdown [filter]="true"
+                                            [options]="listaDatas"
+                                            [style]="{'width':'100%'}"
+                                            formControlName="data">
+                                        </p-dropdown>
+                                        <label for="">Dia</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </p-fieldset>
+                    </p-card>
+                    <div class="formgrid grid mt-5">
+                        <div class="field col-4">
+                            <p-button label="Novo"
+                                icon="pi pi-save"
+                                [style]="{'width':'100%'}"
+                                styleClass="p-button-success"
+                                routerLink="/compromisso/novo">
+                            </p-button>
+                        </div>
+                        <div class="field col-4">
+                            <p-button label="Pesquisar"
+                                icon="pi pi-search"
+                                [style]="{'width':'100%'}"
+                                (click)="pesquisar()"
+                                styleClass="p-button-secondary">
+                            </p-button>
+                        </div>
+                        <div class="field col-4">
+                            <p-button label="Limpar"
+                                icon="pi pi-times"
+                                [style]="{'width':'100%'}"
+                                styleClass="p-button-secondary"
+                                (click)="limpar()">
+                            </p-button>
+                        </div>
+                    </div>
+                </form>
+            </p-card>
+        </div>
+        <div class="col-12">
+            <p-card>
+                <app-tabela [titulo]="'Consultar Compromissos'"
+                    [dataSource]="dataSource"
+                    [columns]="columns"
+                    [tooltip]="'sigla'"
+                    (visualizar)="visualizar($event)"
+                    (editar)="editar($event)"
+                    (deletar)="confirmarExcluir($event)">
+                </app-tabela>
+            </p-card>
+        </div>
+    </div>
+</div>

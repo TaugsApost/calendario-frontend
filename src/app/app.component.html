@@ -1,3 +1,12 @@
+<p-toast position="top-center"
+    [preventOpenDuplicates]="true">
+</p-toast>
+<p-confirmDialog [style]="{width: '50vw'}"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+    acceptLabel="Sim"
+    rejectLabel="Não"
+    key="excluir"></p-confirmDialog>
 <taugs-header [user]="user"
     *ngIf="loginService.logado()"></taugs-header>
 <!-- <taugs-menu-top *ngIf="loginService.logado()"></taugs-menu-top> -->

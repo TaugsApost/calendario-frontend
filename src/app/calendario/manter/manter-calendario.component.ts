@@ -46,6 +46,7 @@ export class ManterCalendarioComponent implements OnInit {
   constructor(private service: CalendarioService, private messageService: MessageService, private rota: Router, private loginService: LoginService) {
     this.formSalvar = new FormGroup({
       configuracao: new FormControl(null),
+      privado: new FormControl(false),
       //Criar Vinculo DiaData
       dia: new FormControl(null),
       posicaoDia: new FormControl(null),
@@ -59,7 +60,8 @@ export class ManterCalendarioComponent implements OnInit {
       anoInicial: new FormControl(1800),
       anoFinal: new FormControl(1800),
       bissexto: new FormControl(false),
-      idUsuario: new FormControl()
+      idUsuario: new FormControl(),
+      nome: new FormControl('', Validators.required),
     });
   }
 
@@ -275,19 +277,22 @@ export class ManterCalendarioComponent implements OnInit {
 
   criarCalendario() {
     if (this.formSalvar.controls['anoInicial'].value != null && this.formSalvar.controls['anoFinal'].value != null
-      && this.listaDiasTabela.length == 0 && this.listaMesesTabela.length == 0) {
+      && this.listaDiasTabela.length == 0 && this.listaMesesTabela.length == 0 && this.formSalvar.valid) {
       let config: ConfiguracaoCalendario = new ConfiguracaoCalendario;
       config.anoInicial = this.formSalvar.controls['anoInicial'].value;
       config.anoFinal = this.formSalvar.controls['anoFinal'].value;
       config.bissexto = this.formSalvar.controls['bissexto'].value;
       config.dias = this.listaDiaData;
       config.meses = this.listaMesData;
+      config.privado = this.formSalvar.controls['privado'].value;
+      config.nome = this.formSalvar.controls['nome'].value;
       this.formSalvar.controls['configuracao'].setValue(config);
       this.formSalvar.controls['idUsuario'].setValue(this.idUser);
       console.log(config);
       this.service.salvarCalendario(this.formSalvar.getRawValue()).subscribe(
         data => {
-          this.rota.navigateByUrl('calendario/listar');
+          this.adicionarMensagem('success', 'Concluído', 'Calendario criado com sucesso!')
+          this.rota.navigate(['/calendario']);
         }
       );
     } else {

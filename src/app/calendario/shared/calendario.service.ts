@@ -16,16 +16,22 @@ export class CalendarioService {
 
     constructor(private http: HttpClient) { }
 
-    listarCalendario(): Observable<Calendario[]> {
+    listarPorUsuario(): Observable<Calendario[]> {
         var urlListar: string = this.url + 'listar';
-        return this.http.get<Calendario[]>(urlListar).pipe(
+        let idUser: number = (localStorage.getItem('id_usuario') as unknown) as number;
+        let u: Usuario = new Usuario;
+        u.id = idUser;
+        return this.http.post<Calendario[]>(urlListar, u).pipe(
             map(response => response)
         )
     }
 
-    listarCalendarios(user: Usuario): Observable<Calendario[]> {
+    listarCalendarios(): Observable<Calendario[]> {
         var urlListar: string = this.url + 'listarTodos';
-        return this.http.post<Calendario[]>(urlListar, user).pipe(
+        let idUser: number = (localStorage.getItem('id_usuario') as unknown) as number;
+        let u: Usuario = new Usuario;
+        u.id = idUser;
+        return this.http.post<Calendario[]>(urlListar, u).pipe(
             map(response => response)
         )
     }
@@ -70,6 +76,10 @@ export class CalendarioService {
         return this.http.post<Mes[]>(urlListar, user).pipe(
             map(response => response)
         )
+    }
+    excluirCalendario(id: number): Observable<any> {
+        var urlExcluir: string = this.url + 'excluir';
+        return this.http.delete(`${urlExcluir}/${id}`, { responseType: 'text' });
     }
 
 }

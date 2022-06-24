@@ -1,5 +1,7 @@
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ConfirmationService } from 'primeng/api';
 import { LoginService } from 'src/app/estrutura/login/login.service';
 import { Usuario, UsuarioFilter } from 'src/app/usuario/shared/usuario.model';
 import { Calendario } from '../shared/calendario.model';
@@ -14,8 +16,10 @@ export class ListarCalendarioComponent implements OnInit {
 
   form: FormGroup;
   listaCalendario: Calendario[] = [];
+  listaOutrosCalendario: Calendario[] = [];
+  listaUsuarios: Usuario[] = [];
 
-  constructor(private service: CalendarioService, private loginService: LoginService) {
+  constructor(private service: CalendarioService, private loginService: LoginService, private confirmationService: ConfirmationService) {
     this.form = new FormGroup({
 
     });
@@ -26,22 +30,71 @@ export class ListarCalendarioComponent implements OnInit {
   }
 
   private criarListas() {
-    let user: UsuarioFilter = new UsuarioFilter();
-    user.userName = localStorage.getItem('usuario') as string;
-    this.loginService.consultarPorUserName(user).subscribe(
-      data => {
-        this.criarListaCalendarios(data);
-      }
-    );
+    this.criarListaUsuarios();
+    this.criarListaCalendarios();
 
   }
 
-  private criarListaCalendarios(user: Usuario) {
-    this.service.listarCalendarios(user).subscribe(data => {
+  private criarListaUsuarios() {
+    this.loginService.listarUsuarios().subscribe(
+      data => {
+        this.listaUsuarios = data;
+        console.log(this.listaUsuarios);
+      }
+    );
+  }
+
+  private criarListaCalendarios() {
+    this.listaCalendario = [];
+    this.listaOutrosCalendario = [];
+    this.service.listarCalendarios().subscribe(data => {
       data.forEach(calendario => {
-        this.listaCalendario.push(calendario);
+        calendario.nomeUsuario = this.returnNomeUser(calendario.idUsuario);
+        if (calendario.idUsuario == localStorage.getItem('id_usuario') as unknown) {
+          this.listaCalendario.push(calendario);
+        } else {
+          this.listaOutrosCalendario.push(calendario);
+        }
       });
     }
+    );
+  }
+
+  private returnNomeUser(idUser: number): string {
+    let userName: string = '';
+    this.listaUsuarios.forEach(u => {
+      if (u.id == idUser) {
+        userName = u.userName;
+      }
+    });
+    return userName;
+  }
+
+  confirmarExcluir(calendario: Calendario) {
+    this.confirmationService.confirm({
+      message: 'Deseja prosseguir com a operação? Esta ação não poderá ser desfeita',
+      header: 'Excluir ' + calendario.configuracao.nome,
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.excluir(calendario);
+      },
+      key: 'excluir'
+    });
+  }
+
+  excluir(calendario: Calendario) {
+    this.service.excluirCalendario((calendario.id) as any).subscribe(
+      data => {
+        this.criarListaCalendarios();
+        this.confirmationService.confirm({
+          message: 'Registro excluido com sucesso',
+          header: 'Excluido',
+          icon: 'pi pi-exclamation-triangle',
+          rejectVisible: false,
+          key: 'excluir',
+          acceptLabel: 'Ok'
+        });
+      }
     );
   }
 

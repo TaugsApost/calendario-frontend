@@ -1,0 +1,139 @@
+<div class="grid mt-3 flex justify-content-center">
+    <div class="col-11">
+        <div class="col-12 mt-3">
+            <p-card header="Novo compromisso">
+                <form [formGroup]="formSalvar">
+                    <p-card>
+                        <p-fieldset [toggleable]="true">
+                            <div class="formgrid grid mt-3 flex align-items-center">
+                                <div class="field formgrid grid col-6">
+                                    <div class="col-12 field">
+                                        <span class="p-float-label">
+                                            <input pInputText
+                                                type="text"
+                                                class="p-inputtext"
+                                                formControlName="titulo">
+                                            <label for="">Título</label>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 field">
+                                        <p-editor [ngClass]="{'invalid':formSalvar.controls['descricao'].invalid}"
+                                            formControlName="descricao"
+                                            [style]="{'height':'150px'}">
+                                            <ng-template pTemplate="header">
+                                                <div>
+                                                    <label class="text-center">Descrição</label>
+                                                </div>
+                                            </ng-template>
+                                        </p-editor>
+                                    </div>
+                                </div>
+                                <div [formGroup]="$any(formSalvar.controls['horario'])"
+                                    class="field formgrid grid col-6 flex justify-content-center">
+                                    <div class="text-center field col-12">
+                                        <label for="">Horario</label>
+                                    </div>
+                                    <div class="text-center mt-3 field col-3">
+                                        <span class="p-float-label">
+                                            <p-dropdown [filter]="true"
+                                                [options]="listaHoras"
+                                                formControlName="hora">
+                                            </p-dropdown>
+                                            <label for="">Horas</label>
+                                        </span>
+                                    </div>
+                                    <div class="text-center mt-3 field col-3">
+                                        <span class="p-float-label">
+                                            <p-dropdown [filter]="true"
+                                                [options]="listaMinutos"
+                                                formControlName="minutos">
+                                            </p-dropdown>
+                                            <label for="">Minutos</label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-fieldset>
+                        <div class="col"></div>
+                        <p-fieldset legend=""
+                            [toggleable]="true">
+                            <div class="formgrid grid mt-3">
+                                <div [formGroup]="$any(formSalvar.controls['dataFilter'])"
+                                    class="formgrid grid field col-9">
+                                    <div class="field col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown [filter]="true"
+                                                [options]="listaCalendarios"
+                                                [style]="{'width':'100%'}"
+                                                formControlName="calendario"
+                                                (onChange)="gerarListaCaracteristicasData()">
+                                            </p-dropdown>
+                                            <label for="">Calendário</label>
+                                        </span>
+                                    </div>
+                                    <div class="field col-3">
+                                        <span class="p-float-label">
+                                            <p-dropdown [filter]="true"
+                                                [options]="listaAnos"
+                                                [style]="{'width':'100%'}"
+                                                formControlName="nomeAno">
+                                            </p-dropdown>
+                                            <label for="">Ano</label>
+                                        </span>
+                                    </div>
+                                    <div class="field col-4">
+                                        <span class="p-float-label">
+                                            <p-dropdown [filter]="true"
+                                                [options]="listaMeses"
+                                                [style]="{'width':'100%'}"
+                                                formControlName="mes">
+                                            </p-dropdown>
+                                            <label for="">Mes</label>
+                                        </span>
+                                    </div>
+                                    <div class="field col-1">
+                                        <button pButton
+                                            type="button"
+                                            class="p-button-success p-button-rounded"
+                                            icon="pi pi-angle-double-right"
+                                            (click)="criarListaDatas()">
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- ///// -->
+                                <div class="field col-3">
+                                    <span class="p-float-label">
+                                        <p-dropdown [filter]="true"
+                                            [options]="listaDatas"
+                                            [style]="{'width':'100%'}"
+                                            formControlName="data">
+                                        </p-dropdown>
+                                        <label for="">Dia</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </p-fieldset>
+                    </p-card>
+                    <div class="formgrid grid mt-5">
+                        <div class="field col-6">
+                            <p-button label="Salvar"
+                                icon="pi pi-save"
+                                [style]="{'width':'100%'}"
+                                styleClass="p-button-success"
+                                (onClick)="salvar()">
+                            </p-button>
+                        </div>
+                        <div class="field col-6">
+                            <p-button label="Voltar"
+                                icon="pi pi-times"
+                                [style]="{'width':'100%'}"
+                                styleClass="p-button-secondary"
+                                routerLink="/compromisso">
+                            </p-button>
+                        </div>
+                    </div>
+                </form>
+            </p-card>
+        </div>
+    </div>
+</div>

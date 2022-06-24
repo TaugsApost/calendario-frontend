@@ -5,6 +5,8 @@ import { HomeModule } from './taugs/estrutura/home/home.module';
 import { LoginModule } from './estrutura/login/login.module';
 import { CadastroModule } from './cadastro/cadastro.module';
 import { CalendarioModule } from './calendario/calendario.module';
+import { CompromissoModule } from './compromisso/compromisso.module';
+import { UsuarioModule } from './usuario/usuario.module';
 
 const routes: Routes = [
   {
@@ -25,6 +27,16 @@ const routes: Routes = [
   {
     path: 'calendario',
     loadChildren: () => import('./calendario/calendario.module').then(x => CalendarioModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'compromisso',
+    loadChildren: () => import('./compromisso/compromisso.module').then(x => CompromissoModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'usuario',
+    loadChildren: () => import('./usuario/usuario.module').then(x => UsuarioModule),
     canActivate: [AuthGuard]
   },
   {

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { LoginService } from './estrutura/login/login.service';
 import { Usuario, UsuarioFilter } from './usuario/shared/usuario.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class AppComponent implements OnInit {
 

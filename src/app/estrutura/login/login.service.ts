@@ -46,4 +46,18 @@ export class LoginService {
     localStorage.removeItem('id_usuario');
   }
 
+  salvar(user: Usuario): Observable<Usuario> {
+    let url: string = this.urlCadastro + 'salvar';
+    return this.http.post<Usuario>(url, user).pipe(
+      map(response => response)
+    );
+  }
+
+  listarUsuarios(): Observable<Usuario[]> {
+    var urlListar: string = this.urlCadastro + 'listar';
+    return this.http.get<Usuario[]>(urlListar).pipe(
+      map(response => response)
+    )
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Dia } from 'src/app/cadastro/shared/cadastro.model';
 import { Calendario } from '../../shared/calendario.model';
 
@@ -10,6 +10,9 @@ import { Calendario } from '../../shared/calendario.model';
 export class DetalheCalendarioComponent implements OnInit {
 
   @Input() calendario: Calendario = new Calendario();
+  @Input() editavel: boolean = false;
+
+  @Output() excluir = new EventEmitter<any>();
 
   diaInicial: Dia;
 
@@ -24,6 +27,10 @@ export class DetalheCalendarioComponent implements OnInit {
         this.diaInicial = d.dia;
       }
     });
+  }
+
+  botaoDeletar(item: any) {
+    this.excluir.emit(item)
   }
 
 }

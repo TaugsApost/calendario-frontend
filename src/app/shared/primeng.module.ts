@@ -24,10 +24,16 @@ import { AccordionModule } from 'primeng/accordion';
 import { InputTextModule } from 'primeng/inputtext';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { SidebarModule } from 'primeng/sidebar';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { EditorModule } from 'primeng/editor';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
   exports: [
+    ConfirmDialogModule,
+    EditorModule,
+    InputSwitchModule,
     TieredMenuModule,
     SidebarModule,
     InputTextModule,

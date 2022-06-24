@@ -1,1 +1,109 @@
-<p>criar-conta works!</p>
+<div class="formgrid mt-8 flex justify-content-center">
+    <div class="field mt-8 col-4">
+        <p-card>
+            <ng-template pTemplate="header">
+                Login
+            </ng-template>
+            <form class="form-group"
+                [formGroup]="formCriar">
+                <div class="formgrid grid mt-3">
+                    <div class="field col-12">
+                        <span class="p-float-label">
+                            <input class="p-inputtext"
+                                pInputText
+                                type="text"
+                                formControlName="nome">
+                            <label>Nome Completo</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 mt-4">
+                        <span class="p-float-label">
+                            <input class="p-inputtext"
+                                pInputText
+                                type="text"
+                                formControlName="userName">
+                            <label>Username</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 mt-4">
+                        <span class="p-float-label">
+                            <input class="p-inputtext"
+                                pInputText
+                                type="password"
+                                formControlName="senha">
+                            <label>Senha</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="formgrid grid mt-5 flex justify-content-between">
+                    <div class="field col-6">
+                        <button pButton
+                            pRipple
+                            type="button"
+                            label="Criar Conta"
+                            class="p-button-raised p-button-success"
+                            (click)="criarConta()"></button>
+                    </div>
+                    <div class="field col-6">
+                        <button pButton
+                            pRipple
+                            type="button"
+                            label="Voltar"
+                            class="p-button-raised p-button-secondary"
+                            (click)="voltar()"></button>
+                    </div>
+                </div>
+            </form>
+        </p-card>
+    </div>
+</div>
+<p-dialog [(visible)]="erro"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+    [style]="{width: '30vw'}">
+    <ng-template pTemplate="header">
+        Erro!
+    </ng-template>
+    <p class="m-0">Ja existe um usuario com este userName</p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check"
+            (click)="erro=false"
+            label="Ok"
+            styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
+<p-dialog styleClass="sucesso"
+    (onHide)="voltar()"
+    [(visible)]="sucesso"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+    [style]="{width: '30vw'}">
+    <ng-template pTemplate="header">
+        Sucesso!
+    </ng-template>
+    <p class="m-0">Usuario criado com sucesso</p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check"
+            (click)="voltar()"
+            label="Ok"
+            styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
+<p-dialog [(visible)]="formInvalido"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+    [style]="{width: '30vw'}">
+    <ng-template pTemplate="header">
+        Erro!
+    </ng-template>
+    <p class="m-0">Digite os dados corretamente</p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check"
+            (click)="formInvalido = false"
+            label="Ok"
+            styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

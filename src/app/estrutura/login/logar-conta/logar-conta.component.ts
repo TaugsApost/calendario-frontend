@@ -35,6 +35,10 @@ export class LogarContaComponent implements OnInit {
         }
       }
     );
-    //this.router.navigate(['']);
+
+  }
+
+  criarConta() {
+    this.router.navigate(['login/criarConta']);
   }
 }

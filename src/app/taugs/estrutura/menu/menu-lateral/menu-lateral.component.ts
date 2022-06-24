@@ -51,7 +51,11 @@ export class MenuLateralComponent implements OnInit {
         icon: 'pi pi-book',
         items: [
           {
-            label: 'Meus Compromissos'
+            label: 'Meus Compromissos',
+            routerLink: '/compromisso',
+            command: (event) => {
+              this.sair();
+            }
           }
         ]
       },

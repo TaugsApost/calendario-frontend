@@ -5,6 +5,7 @@ export class Calendario {
     configuracao: ConfiguracaoCalendario = new ConfiguracaoCalendario();
     datas: Data[] = [];
     idUsuario = 0;
+    nomeUsuario = '';
 }
 
 export class ConfiguracaoCalendario {
@@ -14,6 +15,8 @@ export class ConfiguracaoCalendario {
     anoInicial = 0;
     anoFinal = 0;
     bissexto = false;
+    privado = false;
+    nome = '';
 }
 
 export class VinculoMesData {
@@ -31,6 +34,7 @@ export class Data {
     ano: any = null;
     posicaoMes = 0;
     posicaoAno = 0;
+    idCalendario = 0;
 }
 
 export class VinculoDiaData {

@@ -13,3 +13,21 @@ input.ng-invalid {
 input.ng-invalid~label {
     color: red;
 }
+
+p-dropdown.ng-invalid:not(form)>div {
+    border-color: red !important;
+    color: red;
+}
+
+p-dropdown>div {
+    width: 100% !important;
+}
+
+.invalid {
+
+    .p-editor-content,
+    .p-editor-toolbar {
+        border-color: red !important;
+        color: red;
+    }
+}
