@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
 import { Dia, Mes } from "src/app/cadastro/shared/cadastro.model";
 import { Usuario } from "src/app/usuario/shared/usuario.model";
-import { Calendario } from "./calendario.model";
+import { Calendario, ConfiguracaoCalendario } from "./calendario.model";
 
 @Injectable({
     providedIn: 'root'
@@ -11,6 +11,7 @@ import { Calendario } from "./calendario.model";
 export class CalendarioService {
 
     private url = 'http://localhost:8080/calendario/rest/calendario/';
+    private urlConfig = 'http://localhost:8080/calendario/rest/config/';
     private urlDia: string = 'http://localhost:8080/calendario/rest/dia/';
     private urlMes: string = 'http://localhost:8080/calendario/rest/mes/';
 
@@ -80,6 +81,12 @@ export class CalendarioService {
     excluirCalendario(id: number): Observable<any> {
         var urlExcluir: string = this.url + 'excluir';
         return this.http.delete(`${urlExcluir}/${id}`, { responseType: 'text' });
+    }
+    salvarConfiguracao(config: ConfiguracaoCalendario): Observable<ConfiguracaoCalendario> {
+        var urlSalvar: string = this.urlConfig + 'salvar';
+        return this.http.post<ConfiguracaoCalendario>(urlSalvar, config).pipe(
+            map(response => response)
+        );
     }
 
 }
