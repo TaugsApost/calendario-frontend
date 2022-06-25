@@ -1,0 +1,100 @@
+<div class="grid mt-3 flex justify-content-center">
+    <div class="col-6">
+        <p-card header="Configuração">
+            <form [formGroup]="formView">
+                <div class="formgrid grid flex justify-content-center">
+                    <div class="col-12">
+                        <p-card>
+                            <div class="formgrid grid mt-0 flex align-items-end">
+                                <div class="col-4 field">
+                                    <span class="p-float-label">
+                                        <input *ngIf="editar == false"
+                                            type="text"
+                                            class="p-inputtext border-0"
+                                            readonly="true"
+                                            pInputText
+                                            formControlName="nome">
+                                        <input *ngIf="editar == true"
+                                            type="text"
+                                            class="p-inputtext"
+                                            pInputText
+                                            formControlName="nome">
+                                        <label for="">Nome</label>
+                                    </span>
+                                </div>
+                                <div class="col-4 field text-center">
+                                    <span class="p-float-label">
+                                        <input type="text"
+                                            class="p-inputtext border-0"
+                                            readonly="true"
+                                            pInputText
+                                            formControlName="textoAno">
+                                        <label>Ano</label>
+                                    </span>
+                                </div>
+                                <div class="col-4 field text-center">
+                                    <label>Privado</label>
+                                    <span class="p-float-label">
+                                        <p-inputSwitch formControlName="privado"
+                                            [disabled]="!editar"></p-inputSwitch>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="formgrid grid mt-3 align-items-end">
+                                <div class="col-4 field">
+                                    <span class="p-float-label">
+                                        <p-dropdown [options]="listaDias">
+                                        </p-dropdown>
+                                        <label>Dias</label>
+                                    </span>
+                                </div>
+                                <div class="col-4 field">
+                                    <span class="p-float-label">
+                                        <p-dropdown [options]="listaMeses">
+                                        </p-dropdown>
+                                        <label>Meses</label>
+                                    </span>
+                                </div>
+                                <div class="col-4 field text-center">
+                                    <label>Bissexto</label>
+                                    <span class="p-float-label">
+                                        <p-inputSwitch formGroupName="privado"
+                                            [disabled]="true"></p-inputSwitch>
+                                    </span>
+                                </div>
+                            </div>
+                        </p-card>
+                    </div>
+                    <div class="mt-5 formgrid col-12 field grid flex justify-content-center mb-0">
+                        <div class="col-3 field">
+                            <button pButton
+                                *ngIf="editar == false"
+                                class="p-button-success"
+                                [style]="{'width':'100%'}"
+                                label="Editar"
+                                (click)="habilitarEdicao()">
+                            </button>
+                            <button pButton
+                                *ngIf="editar == true"
+                                class="p-button-success"
+                                [style]="{'width':'100%'}"
+                                label="Salvar"
+                                (click)="salvar()">
+                            </button>
+                        </div>
+                        <div *ngIf="editar == true"
+                            class="col-3 field">
+                            <button pButton
+                                class="p-button-secondary mb-0"
+                                [style]="{'width':'100%'}"
+                                label="Cancelar"
+                                (click)="cancelarEdicao()">
+
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </p-card>
+    </div>
+</div>

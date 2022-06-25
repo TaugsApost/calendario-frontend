@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { ListarCalendarioComponent } from "./listar/listar-calendario.component";
 import { ManterCalendarioComponent } from "./manter/manter-calendario.component";
+import { ViewConfigComponent } from "./visualizar/view-config/view-config.component";
 import { VisualizarCalendarioComponent } from "./visualizar/visualizar-calendario.component";
 
 const routes: Routes = [
@@ -20,6 +21,10 @@ const routes: Routes = [
     {
         path: 'visualizar/:id',
         component: VisualizarCalendarioComponent
+    },
+    {
+        path: 'configuracao/:id',
+        component: ViewConfigComponent
     },
     {
         path: '',

@@ -10,6 +10,7 @@ import { CalendarioService } from "./shared/calendario.service";
 import { VisualizarCalendarioComponent } from "./visualizar/visualizar-calendario.component";
 import { DetalheCalendarioComponent } from './listar/detalhe-calendario/detalhe-calendario.component';
 import { ViewDataComponent } from './visualizar/view-data/view-data.component';
+import { ViewConfigComponent } from './visualizar/view-config/view-config.component';
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import { ViewDataComponent } from './visualizar/view-data/view-data.component';
         VisualizarCalendarioComponent,
         ListarCalendarioComponent,
         DetalheCalendarioComponent,
-        ViewDataComponent
+        ViewDataComponent,
+        ViewConfigComponent
     ],
     providers: [
         CalendarioService

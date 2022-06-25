@@ -3,6 +3,10 @@ export class Usuario {
     nome = '';
     userName = '';
     senha = '';
+    dias: any;
+    meses: any;
+    calendarios: any;
+    compromissos: any;
 }
 
 export class UsuarioFilter {

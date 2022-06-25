@@ -1,6 +1,7 @@
 import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { LoginService } from 'src/app/estrutura/login/login.service';
 import { Usuario, UsuarioFilter } from 'src/app/usuario/shared/usuario.model';
@@ -19,7 +20,8 @@ export class ListarCalendarioComponent implements OnInit {
   listaOutrosCalendario: Calendario[] = [];
   listaUsuarios: Usuario[] = [];
 
-  constructor(private service: CalendarioService, private loginService: LoginService, private confirmationService: ConfirmationService) {
+  constructor(private service: CalendarioService, private loginService: LoginService, private confirmationService: ConfirmationService,
+    private router: Router) {
     this.form = new FormGroup({
 
     });
@@ -96,6 +98,10 @@ export class ListarCalendarioComponent implements OnInit {
         });
       }
     );
+  }
+
+  verConfiguracao(calendario: Calendario) {
+    this.router.navigate(['calendario/configuracao/' + calendario.id]);
   }
 
 }

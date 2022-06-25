@@ -22,7 +22,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Conta'
+        label: 'Conta',
+        command: (event) => {
+          this.router.navigate(['usuario']);
+        }
       },
       {
         label: 'Sair',

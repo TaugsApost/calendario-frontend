@@ -1,0 +1,86 @@
+<div class="grid mt-3 flex justify-content-center align-items-start">
+    <div class="col-2 mt-4">
+        <p-card>
+            <div class="m-0 p-0 formgrid grid col-12 field">
+                <div class="text-center menu-label m-0 py-2 pl-1 pr-3 col-12">
+                    <label class="menu-label"
+                        (click)="logout()">Logout</label>
+                </div>
+                <div class="text-center menu-label m-0 mt-2 py-2 pl-1 pr-3 col-12">
+                    <label class="menu-label"
+                        style="color: var(--red-500);"
+                        (click)="confirmarExcluir()">Excluir conta</label>
+                </div>
+            </div>
+        </p-card>
+    </div>
+    <div class="ml-0 col-6">
+        <div class="col-12 mt-3">
+            <p-card header="Usuario">
+                <form [formGroup]="userForm">
+                    <div class="formgrid grid col-12 field flex justify-content-center mb-0 pb-0">
+                        <p-card>
+                            <div class="flex justify-content-center grid formgrid mt-3">
+                                <div class="col-12 field">
+                                    <span class="p-float-label">
+                                        <input type="text"
+                                            pInputText
+                                            [readonly]="readonly"
+                                            class="p-inputtext"
+                                            formControlName="nome">
+                                        <label for="">Nome</label>
+                                    </span>
+                                </div>
+                                <div class="col-12 field mt-4">
+                                    <span class="p-float-label">
+                                        <input type="text"
+                                            pInputText
+                                            [readonly]="readonly"
+                                            class="p-inputtext"
+                                            formControlName="userName">
+                                        <label for="">UserName</label>
+                                    </span>
+                                </div>
+                                <div class="col-12 field mt-4">
+                                    <span class="p-float-label">
+                                        <input type="password"
+                                            pInputText
+                                            [readonly]="readonly"
+                                            class="p-inputtext"
+                                            formControlName="senha">
+                                        <label for="">Senha</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </p-card>
+                        <div class="col-3 field mt-4">
+                            <button *ngIf="editar == false"
+                                pButton
+                                class="p-button-success"
+                                label="Editar"
+                                [style]="{'width': '100%'}"
+                                (click)="habilitarEdicao()">
+                            </button>
+                            <button *ngIf="editar == true"
+                                pButton
+                                class="p-button-success"
+                                label="Salvar"
+                                [style]="{'width': '100%'}"
+                                (click)="salvar()">
+                            </button>
+                        </div>
+                        <div *ngIf="editar == true"
+                            class="col-3 field mt-4 mb-0 pb-0">
+                            <button pButton
+                                class="p-button-secondary"
+                                label="Cancelar"
+                                [style]="{'width': '100%'}"
+                                (click)="cancelarEdicao()">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </p-card>
+        </div>
+    </div>
+</div>

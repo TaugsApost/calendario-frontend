@@ -13,6 +13,7 @@ export class DetalheCalendarioComponent implements OnInit {
   @Input() editavel: boolean = false;
 
   @Output() excluir = new EventEmitter<any>();
+  @Output() config = new EventEmitter<any>();
 
   diaInicial: Dia;
 
@@ -31,6 +32,10 @@ export class DetalheCalendarioComponent implements OnInit {
 
   botaoDeletar(item: any) {
     this.excluir.emit(item)
+  }
+
+  botaoConfig(item: any) {
+    this.config.emit(item);
   }
 
 }

@@ -8,6 +8,7 @@
                         <div *ngFor="let calendario of listaCalendario"
                             class="field col-6">
                             <detalhe-calendario (excluir)="confirmarExcluir($event)"
+                                (config)="verConfiguracao($event)"
                                 [editavel]="true"
                                 [calendario]="calendario"></detalhe-calendario>
                         </div>
