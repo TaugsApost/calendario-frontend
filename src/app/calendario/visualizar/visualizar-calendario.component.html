@@ -55,17 +55,29 @@
                             <label>{{dia.dia.sigla}}</label>
                         </div>
                     </div>
-
                     <div *ngFor="let array of arrayDatas"
                         class="formgrid grid flex justify-content-center">
                         <div *ngFor="let data of array"
                             class="field col-1 m-0 p-0">
                             <view-data [ativo]="data.posicaoMes == 0? false:true"
-                                [data]="data"></view-data>
+                                [data]="data"
+                                [display]="display"
+                                (fechar)="display = false"></view-data>
                         </div>
                     </div>
                 </p-card>
             </div>
+            <div class="col-12 formgrid grid mb-0 pb-0 flex justify-content-center">
+                <div class="col-2 field mb-0 pb-0">
+                    <button pButton
+                        label="Voltar"
+                        routerLink="/calendario"
+                        class="p-button-secondary mb-0"
+                        [style]="{'width':'100%'}">
+                    </button>
+                </div>
+            </div>
         </p-card>
     </div>
+
 </div>

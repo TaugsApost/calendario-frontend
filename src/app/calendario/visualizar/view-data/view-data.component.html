@@ -1,6 +1,12 @@
-<p-card [styleClass]="ativo?'ativo':'inativo'">
+<p-card (click)="display = true"
+    [styleClass]="ativo?'ativo':'inativo'">
     <ng-template pTemplate="subtitle">
         {{data.posicaoAno == 0 ? '': data.posicaoAno}}
     </ng-template>
     <label>{{data.posicaoMes == 0 ? '': data.posicaoMes}}</label>
 </p-card>
+<view-detalhe-data [display]="display"
+    [data]="data"
+    (fechar)="display = false">
+
+</view-detalhe-data>

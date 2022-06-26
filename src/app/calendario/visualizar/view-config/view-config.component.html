@@ -66,7 +66,7 @@
                         </p-card>
                     </div>
                     <div class="mt-5 formgrid col-12 field grid flex justify-content-center mb-0">
-                        <div class="col-3 field">
+                        <div class="col-3 field mb-0">
                             <button pButton
                                 *ngIf="editar == false"
                                 class="p-button-success"
@@ -83,13 +83,20 @@
                             </button>
                         </div>
                         <div *ngIf="editar == true"
-                            class="col-3 field">
+                            class="col-3 field mb-0">
                             <button pButton
                                 class="p-button-secondary mb-0"
                                 [style]="{'width':'100%'}"
                                 label="Cancelar"
                                 (click)="cancelarEdicao()">
-
+                            </button>
+                        </div>
+                        <div class="col-3 field mb-0">
+                            <button pButton
+                                class="p-button-secondary mb-0"
+                                [style]="{'width':'100%'}"
+                                label="Voltar"
+                                routerLink="/calendario">
                             </button>
                         </div>
                     </div>

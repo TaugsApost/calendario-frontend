@@ -54,4 +54,11 @@ export class CompromissoService {
     var urlExcluir: string = this.url + 'excluir';
     return this.http.delete(`${urlExcluir}/${id}`, { responseType: 'text' });
   }
+
+  listarTodosCompromissos(): Observable<Compromisso[]> {
+    var urlListar: string = this.url + 'listar';
+    return this.http.get<Compromisso[]>(urlListar).pipe(
+      map(reponse => reponse)
+    );
+  }
 }

@@ -167,11 +167,15 @@ export class ManterCalendarioComponent implements OnInit {
 
   adicionarDiaTabela() {
     if (this.formSalvar.controls['dia'].value != null) {
-      if (this.listaDiasTabela.filter(d => d == this.formSalvar.controls['dia'].value).length == 0) {
-        this.listaDiasTabela = this.listaDiasTabela.concat(this.formSalvar.controls['dia'].value);
-        this.formSalvar.controls['dia'].reset();
+      if (this.listaDiasTabela.length < 12) {
+        if (this.listaDiasTabela.filter(d => d == this.formSalvar.controls['dia'].value).length == 0) {
+          this.listaDiasTabela = this.listaDiasTabela.concat(this.formSalvar.controls['dia'].value);
+          this.formSalvar.controls['dia'].reset();
+        } else {
+          this.adicionarMensagem('error', 'Erro', 'Dia já adicionado');
+        }
       } else {
-        this.adicionarMensagem('error', 'Erro', 'Dia já adicionado');
+        this.adicionarMensagem('error', 'Erro', 'Numero maximo de dias ja atingido');
       }
     } else {
       this.adicionarMensagem('error', 'Erro', 'Nenhum dia foi selecionado');
@@ -302,6 +306,14 @@ export class ManterCalendarioComponent implements OnInit {
 
   private adicionarMensagem(icone: string, titulo: string, texto: string) {
     this.messageService.add({ severity: icone, summary: titulo, detail: texto });
+  }
+
+  deletarDiaTabela(dia: Dia) {
+    this.listaDiasTabela = this.listaDiasTabela.filter(d => d != dia);
+  }
+
+  deletarMesTabela(mes: Mes) {
+    this.listaMesesTabela = this.listaMesesTabela.filter(m => m != mes);
   }
 
 }

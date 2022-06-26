@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Data } from '../../shared/calendario.model';
 
 @Component({
@@ -9,11 +9,20 @@ import { Data } from '../../shared/calendario.model';
 export class ViewDataComponent implements OnInit {
 
   @Input() data: Data = new Data();
+  @Input() display: boolean = false;
   @Input() ativo: boolean = true;
+  @Output() fechar: EventEmitter<any> = new EventEmitter();
+
 
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+
+  fecharData() {
+    this.display = false;
+    this.fechar.emit();
   }
 
 }
