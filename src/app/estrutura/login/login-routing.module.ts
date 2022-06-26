@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router"
-import { AuthGuard } from "../auth/auth.guard"
+import { AuthGuard } from "../../taugs/estrutura/auth/auth.guard"
 import { CriarContaComponent } from "./criar-conta/criar-conta.component"
 import { LogarContaComponent } from "./logar-conta/logar-conta.component"
 import { VisualizarContaComponent } from "./visualizar-conta/visualizar-conta.component"

@@ -11,6 +11,7 @@ import { VisualizarCalendarioComponent } from "./visualizar/visualizar-calendari
 import { DetalheCalendarioComponent } from './listar/detalhe-calendario/detalhe-calendario.component';
 import { ViewDataComponent } from './visualizar/view-data/view-data.component';
 import { ViewConfigComponent } from './visualizar/view-config/view-config.component';
+import { ViewDetalheDataComponent } from './visualizar/view-detalhe-data/view-detalhe-data.component';
 
 @NgModule({
     imports: [
@@ -26,14 +27,16 @@ import { ViewConfigComponent } from './visualizar/view-config/view-config.compon
         ListarCalendarioComponent,
         DetalheCalendarioComponent,
         ViewDataComponent,
-        ViewConfigComponent
+        ViewConfigComponent,
+        ViewDetalheDataComponent
     ],
     providers: [
         CalendarioService
     ],
     exports: [
         DetalheCalendarioComponent,
-        ViewDataComponent
+        ViewDataComponent,
+        ViewDetalheDataComponent,
     ]
 })
 export class CalendarioModule { }

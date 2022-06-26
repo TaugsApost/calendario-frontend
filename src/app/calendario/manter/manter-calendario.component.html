@@ -32,8 +32,8 @@
                                     <app-tabela [columns]="colDias"
                                         [dataSource]="listaDiasTabela"
                                         [habEditar]="false"
-                                        [habVisualizar]="false">
-
+                                        [habVisualizar]="false"
+                                        (deletar)="deletarDiaTabela($event)">
                                     </app-tabela>
                                 </div>
                             </div>
@@ -65,7 +65,8 @@
                                     <app-tabela [columns]="colMeses"
                                         [dataSource]="listaMesesTabela"
                                         [habEditar]="false"
-                                        [habVisualizar]="false">
+                                        [habVisualizar]="false"
+                                        (deletar)="deletarMesTabela($event)">
 
                                     </app-tabela>
                                 </div>

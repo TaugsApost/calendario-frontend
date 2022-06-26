@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './estrutura/auth/auth.guard';
+import { AuthGuard } from './taugs/estrutura/auth/auth.guard';
 import { HomeModule } from './taugs/estrutura/home/home.module';
 import { LoginModule } from './estrutura/login/login.module';
 import { CadastroModule } from './cadastro/cadastro.module';

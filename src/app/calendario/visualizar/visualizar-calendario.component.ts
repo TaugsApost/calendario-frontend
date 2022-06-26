@@ -15,6 +15,7 @@ export class VisualizarCalendarioComponent implements OnInit {
   viewForm: FormGroup;
   colunas: number = 0;
   linhas: number = 0;
+  display: boolean = false;
 
   private numMeses: number = 0;
   private numAnos: number = 0;

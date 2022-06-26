@@ -1,0 +1,105 @@
+<p-dialog [(visible)]="display"
+    [resizable]="true"
+    [style]="{width: '25vw'}"
+    [draggable]="false"
+    [modal]="true"
+    (onHide)="voltar()"
+    (onShow)="carregarData()">
+    <form [formGroup]="viewForm">
+        <div class="formgrid grid mt-4"
+            [formGroup]="$any($any(viewForm.controls['dia']).controls['dia'])">
+            <div class="col-6 field">
+                <span class="p-float-label">
+                    <input pInputText
+                        type="text"
+                        class="p-inputtext border-0"
+                        [readonly]="true"
+                        formControlName="nome">
+                    <label>Nome do Dia</label>
+                </span>
+            </div>
+            <div class="col-6 field">
+                <span class="p-float-label">
+                    <input pInputText
+                        type="text"
+                        [readonly]="true"
+                        class="p-inputtext border-0"
+                        formControlName="sigla">
+                    <label>Sigla do Dia</label>
+                </span>
+            </div>
+        </div>
+        <div class="formgrid grid mt-4"
+            [formGroup]="$any($any(viewForm.controls['mes']).controls['mes'])">
+            <div class="col-6 field">
+                <span class="p-float-label">
+                    <input pInputText
+                        type="text"
+                        class="p-inputtext border-0"
+                        [readonly]="true"
+                        formControlName="nome">
+                    <label>Nome do Mes</label>
+                </span>
+            </div>
+            <div class="col-6 field">
+                <span class="p-float-label">
+                    <input pInputText
+                        type="text"
+                        [readonly]="true"
+                        class="p-inputtext border-0"
+                        formControlName="sigla">
+                    <label>Sigla do Mes</label>
+                </span>
+            </div>
+        </div>
+        <div class="formgrid grid mt-4"
+            [formGroup]="$any($any(viewForm.controls['ano']))">
+            <div class="col-6 field">
+                <span class="p-float-label">
+                    <input pInputText
+                        type="text"
+                        class="p-inputtext border-0"
+                        [readonly]="true"
+                        formControlName="nome">
+                    <label>Ano</label>
+                </span>
+            </div>
+            <div class="col-6 field">
+                <span class="p-float-label">
+                    <p-dropdown [options]="listaCompromisso">
+                    </p-dropdown>
+                    <label>Compromissos</label>
+                </span>
+            </div>
+        </div>
+        <div class="formgrid grid mt-4">
+            <div class="col-6 field">
+                <span class="p-float-label">
+                    <input pInputText
+                        type="text"
+                        class="p-inputtext border-0"
+                        [readonly]="true"
+                        formControlName="textoPosicaoMes">
+                </span>
+            </div>
+            <div class="col-6 field">
+                <span class="p-float-label">
+                    <input pInputText
+                        type="text"
+                        class="p-inputtext border-0"
+                        [readonly]="true"
+                        formControlName="textoPosicaoAno">
+                </span>
+            </div>
+            <div class="col-6 field">
+                <span class="p-float-label">
+                    <input pInputText
+                        type="text"
+                        class="p-inputtext border-0"
+                        [readonly]="true"
+                        formControlName="textoData">
+                </span>
+            </div>
+        </div>
+    </form>
+</p-dialog>

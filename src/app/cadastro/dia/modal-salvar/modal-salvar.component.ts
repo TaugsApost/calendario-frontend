@@ -29,6 +29,7 @@ export class ModalSalvarComponent implements OnInit {
       nome: new FormControl(null, Validators.required),
       sigla: new FormControl(null, Validators.required),
       idUsuario: new FormControl(),
+      privado: new FormControl(),
     })
   }
 
