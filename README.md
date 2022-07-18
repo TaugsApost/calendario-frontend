@@ -1,5 +1,7 @@
 # CalendarioFrontend
 
+Video do projeto: https://www.youtube.com/channel/UCLuz-Sa0kRaO2NsLcJdLKDA
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
 ## Development server
